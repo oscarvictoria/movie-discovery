@@ -3,15 +3,16 @@ console.log(heading);
 
 let moviesContainer = document.querySelector("#movie-container");
 
-async function getMovies() {
-  try {
-    let response = await fetch("https://ghibliapi.vercel.app/films");
-    if (!response.ok) {
-      throw new Error("Error with response");
-    }
+let searchBox = document.querySelector('#movie-search'); 
 
-    let movies = await response.json();
-    for (let movie of movies) {
+let moviesArray = []
+
+function displayMovies(movies) {
+
+  moviesContainer.innerHTML = ""
+
+
+      for (let movie of movies) {
       let movieCard = document.createElement("div");
       movieCard.classList.add("movie-card");
 
@@ -33,10 +34,41 @@ async function getMovies() {
 
       moviesContainer.appendChild(movieCard);
     }
-    console.log(movies);
+
+}
+
+async function getMovies() {
+  try {
+    let response = await fetch("https://ghibliapi.vercel.app/films");
+    if (!response.ok) {
+      throw new Error("Error with response");
+    }
+
+    let movies = await response.json();
+    moviesArray = movies; 
+    displayMovies(moviesArray)
+
+
+    
   } catch (err) {
     console.log(err);
   }
 }
 
 getMovies();
+
+searchBox.addEventListener('input', function(e) {
+  let searchTerm = e.target.value.toLowerCase(); 
+
+
+ let filteredMovies = moviesArray.filter(function(movie) {
+ return movie.title.toLowerCase().includes(searchTerm)
+
+  })
+  displayMovies(filteredMovies)
+
+})
+
+
+
+
