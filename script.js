@@ -38,6 +38,10 @@ function displayMovies(movies) {
     movieCard.append(releaseDate);
     movieCard.append(rating);
 
+    let director = document.createElement("p");
+    director.textContent = "Director: " + movie.director;
+    movieCard.appendChild(director);
+
     moviesContainer.appendChild(movieCard);
   }
 }
