@@ -22,14 +22,14 @@ function displayMovies(movies) {
     let movieCard = document.createElement("div");
     movieCard.classList.add("movie-card");
 
-    let title = document.createElement("h2");
-    title.textContent = movie.title;
-    movieCard.appendChild(title);
-
     let poster = document.createElement("img");
     poster.src = movie.image;
     poster.alt = movie.title;
     movieCard.appendChild(poster);
+
+    let title = document.createElement("h2");
+    title.textContent = movie.title;
+    movieCard.appendChild(title);
 
     let releaseDate = document.createElement("p");
     releaseDate.textContent = "Released: " + movie.release_date;

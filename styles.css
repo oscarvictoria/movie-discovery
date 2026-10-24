@@ -10,7 +10,7 @@ header h1 {
 #movie-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
   justify-content: center;
 }
 
@@ -28,4 +28,15 @@ p {
   height: 300px;
   object-fit: cover;
   border-radius: 8px;
+}
+
+#movie-search {
+  display: block;
+  margin: 0 auto;
+  height: 48px;
+  width: 40%;
+  padding: 0 16px 0 40px;
+  border-radius: 24px;
+  font-size: 16px;
+  margin-bottom: 40px;
 }
