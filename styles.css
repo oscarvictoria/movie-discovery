@@ -15,7 +15,7 @@ header h1 {
 }
 
 #movie-container h2,
-p {
+#movie-container p {
   color: #fff;
 }
 
@@ -46,6 +46,30 @@ body.detail-active {
   color: #000000;
 }
 
-#detail-view {
+.list {
+   list-style: none;
+  padding: 0;
+  margin: 20px 0;
 
+
+}
+
+.list li {
+  display: inline-block;
+  margin-right: 16px;
+  background-color: #f4f4f7;
+  color: #333333; 
+  padding: 8px 16px; 
+  margin: 6px 8px 6px 0; 
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid #e1e1e6;
+}
+
+#movie-card p {
+  color: #333;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 700px;
 }

@@ -1,6 +1,5 @@
 let heading = document.querySelector("h1");
 
-
 let moviesContainer = document.querySelector("#movie-container");
 
 let searchBox = document.querySelector("#movie-search");
@@ -16,6 +15,7 @@ let detailView = document.querySelector('#detail-view')
 let backBtn = document.getElementById('back-button')
 
 let detailCard = document.getElementById('movie-card')
+
 
 // moviesContainer.addEventListener('click', function(){
 //   document.body.classList.add('detail-active');
@@ -61,16 +61,21 @@ async function displayMovieDetails(movie) {
   title.textContent = movie.title; 
   detailCard.appendChild(title);
 
+  let description = document.createElement('p'); 
+  description.textContent = movie.description
+  detailCard.appendChild(description); 
+
 
   let names = document.createElement('h2')
   names.textContent = 'Characters'
 
   let listOfNames = document.createElement('ul'); 
+  listOfNames.classList.add('list');
 
   
 
-  let peopleResponse = movie.people.map(async function(person) {
-    return await fetchOneCharacter(person)
+  let peopleResponse = movie.people.map(function(person) {
+    return fetchOneCharacter(person)
   })
 
   let characters = await Promise.all(peopleResponse); 
