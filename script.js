@@ -29,6 +29,19 @@ backBtn.addEventListener('click', function() {
   mainView.style.display = 'block'
 })
 
+async function fetchOneCharacter(url) {
+  try {
+     let response = await fetch(url); 
+     let data = await response.json()
+    return data
+
+  } catch(err) {
+    console.log(err)
+  }
+ 
+  
+}
+
 async function fetchMovieDetails(id) {
   try {
       let url = `https://ghibliapi.vercel.app/films/${id}`
@@ -42,12 +55,39 @@ async function fetchMovieDetails(id) {
 
 }
 
-function displayMovieDetails(movie) {
+async function displayMovieDetails(movie) {
   detailCard.textContent = ''
   let title = document.createElement('h1')
   title.textContent = movie.title; 
   detailCard.appendChild(title);
 
+
+  let names = document.createElement('h2')
+  names.textContent = 'Characters'
+
+  let listOfNames = document.createElement('ul'); 
+
+  
+
+  let peopleResponse = movie.people.map(async function(person) {
+    return await fetchOneCharacter(person)
+  })
+
+  let characters = await Promise.all(peopleResponse); 
+
+  for(let char of characters) {
+if(!Array.isArray(char)) {
+  let item = document.createElement('li'); 
+  item.textContent = char.name
+  listOfNames.appendChild(item)
+  // console.log(char.name)
+} else {
+   console.log('Unable to display movie info')
+}
+  }
+
+detailCard.appendChild(names)
+detailCard.appendChild(listOfNames)
 
 
 }
